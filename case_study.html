@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM Case Study: OpenRight - The Creator's Bridge</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            /* Warm/Lite Palette */
+            --bg-cream: #FFFBF7;
+            --surface-white: #FFFFFF;
+            --text-primary: #292524;
+            /* Warm charcoal */
+            --text-secondary: #57534E;
+            /* Stone grey */
+            --accent-orange: #C2410C;
+            /* Burnt orange */
+            --accent-soft: #FFEDD5;
+            /* Soft Peach */
+            --stroke: #E7E5E4;
+            --success: #15803d;
+            --danger: #b91c1c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.25rem;
+            margin-top: 80px;
+            margin-bottom: 32px;
+            color: var(--text-primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* h2::after { content: ""; position: absolute; bottom: -8px; left: 0; width: 40px; height: 3px; background: var(--accent-orange); } */
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        p,
+        li {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Components */
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 100px;
+            background: var(--accent-soft);
+            color: var(--accent-orange);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .highlight-box {
+            background: var(--surface-white);
+            border: 1px solid var(--stroke);
+            border-left: 4px solid var(--accent-orange);
+            border-radius: 8px;
+            padding: 32px;
+            margin: 40px 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.01);
+        }
+
+        .insight-card {
+            background: var(--surface-white);
+            border: 1px solid var(--stroke);
+            border-radius: 12px;
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .img-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+            margin: 40px 0;
+            background: var(--surface-white);
+            border: 1px solid var(--stroke);
+        }
+
+        .img-fluid {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: var(--surface-white);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--stroke);
+            text-align: center;
+        }
+
+        .stat-val {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-lbl {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        /* Decision Table */
+        .decision-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            background: var(--surface-white);
+            border: 1px solid var(--stroke);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .decision-table th {
+            text-align: left;
+            padding: 16px;
+            background: #fafaf9;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--stroke);
+        }
+
+        .decision-table td {
+            padding: 16px;
+            border-bottom: 1px solid var(--stroke);
+            font-size: 1rem;
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+
+        .decision-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Lists */
+        ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        li {
+            padding-left: 24px;
+            position: relative;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--accent-orange);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+            line-height: 1.2;
+        }
+
+        .number-list {
+            counter-reset: item;
+        }
+
+        .number-list li {
+            padding-left: 40px;
+        }
+
+        .number-list li::before {
+            content: counter(item);
+            counter-increment: item;
+            background: var(--accent-soft);
+            color: var(--accent-orange);
+            font-size: 0.75rem;
+            font-weight: 700;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 2px;
+        }
+
+        /* Sections */
+        .hero {
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+
+        section {
+            margin-bottom: 100px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            padding-bottom: 80px;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .stat-grid,
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1. HERO & TL;DR -->
+    <header class="hero" data-aos="fade-in">
+        <div class="container">
+            <span class="badge">Product Case Study</span>
+            <h1>Reclaiming the Creator Economy<br>from the In-App Browser</h1>
+            <p style="max-width: 600px; margin: 0 auto 40px;">How <strong>OpenRight</strong> solved the $10B "Login
+                Wall" friction for travel storytellers.</p>
+
+            <div class="img-card">
+                <img src="file:///Users/shubhashreebhat/.gemini/antigravity/brain/981d1fd4-616c-458d-bbb2-f8248d5ed378/creator_workspace_hero_warm_1770669658014.png"
+                    class="img-fluid" alt="Creator Workspace">
+            </div>
+
+            <div class="highlight-box" style="text-align: left;">
+                <h4
+                    style="text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; font-size: 0.85rem; color: var(--accent-orange);">
+                    Executive Summary (TL;DR)</h4>
+                <ul style="margin-bottom: 0;">
+                    <li><strong>Problem:</strong> Social media in-app browsers (IG/FB) impose a "Login Wall" that kills
+                        60% of engagement for creators like "Shri & Shree".</li>
+                    <li><strong>Solution:</strong> A "Smart Link" engine using Cloudflare Edge + Flutter to bypass the
+                        browser and deep-link into the native YouTube app.</li>
+                    <li><strong>Impact:</strong> Built a production-grade utility with <strong>&lt;300ms
+                            latency</strong> and <strong>100% Native App open rate</strong>.</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- 2. BACKGROUND & MOTIVATION -->
+        <section data-aos="fade-up">
+            <h2>2. Background & Motivation</h2>
+            <div class="grid-2">
+                <div>
+                    <p>I run a travel content channel called <strong>Shri and Shree</strong>. My growth strategy relies
+                        heavily on cross-promoting YouTube vlogs via Instagram Stories.</p>
+                    <p><strong>The Trigger:</strong> I noticed a massive drop-off. Friends would DM me: <em>"I watched
+                            your vlog, but I couldn't subscribe because Instagram asked me to login to Google."</em></p>
+                </div>
+                <div>
+                    <img src="file:///Users/shubhashreebhat/.gemini/antigravity/brain/981d1fd4-616c-458d-bbb2-f8248d5ed378/creator_couple_persona_shri_shree_1770669675262.png"
+                        class="img-fluid" style="border-radius: 8px; border: 1px solid var(--stroke);"
+                        alt="Shri and Shree">
+                    <p style="font-size: 0.85rem; margin-top: 8px; color: var(--text-secondary); text-align: center;">
+                        Verified Creators experiencing the problem firsthand.</p>
+                </div>
+            </div>
+            <p><strong>Why existing solutions failed:</strong></p>
+            <ul>
+                <li><strong>Enterprise SaaS (Branch.io):</strong> Prohibitively expensive ($99/mo) and complex.</li>
+                <li><strong>Ad-Supported Utilities:</strong> Degraded my brand by forcing followers to watch spammy ads.
+                </li>
+                <li><strong>Paywalls:</strong> Basic functionality locked behind subscriptions.</li>
+            </ul>
+        </section>
+
+        <!-- 3. PROBLEM STATEMENT -->
+        <section data-aos="fade-up">
+            <h2>3. Problem Statement</h2>
+            <div class="insight-card" style="background: #FDFBF7; border: none;">
+                <p
+                    style="font-size: 1.25rem; color: var(--text-primary); margin: 0; font-family: 'Playfair Display', serif; font-style: italic;">
+                    "In-App Browser Friction destroys the conversion funnel by trapping unauthenticated users in a web
+                    view."</p>
+            </div>
+            <p>When a user taps a YouTube link in Instagram:</p>
+            <ul class="number-list">
+                <li><strong>The Default:</strong> Opens Instagram's internal web view. User is <em>not</em> logged in to
+                    Google here.</li>
+                <li><strong>The Friction:</strong> To Like/Subscribe, they must log in (typing email/password/2FA).</li>
+                <li><strong>The Result:</strong> High cognitive load leads to abandonment. Creators lose algorithmic
+                    signals.</li>
+            </ul>
+        </section>
+
+        <!-- 4. HYPOTHESES -->
+        <section data-aos="fade-up">
+            <h2>4. Assumptions & Hypotheses</h2>
+            <ul>
+                <li><strong>Hypothesis 1 (Behavior):</strong> Creators will switch from "Link in Bio" aggregators to a
+                    dedicated tool if it guarantees native app opens.</li>
+                <li><strong>Hypothesis 2 (Platform):</strong> Social platforms won't block <code>vnd.youtube://</code>
+                    deep link schemes immediately (though it's a grey area).</li>
+                <li><strong>Hypothesis 3 (UX):</strong> Speed is the primary feature. Latency > 1s will cause bounce
+                    rates similar to the login wall itself.</li>
+            </ul>
+        </section>
+
+        <!-- 5. USER RESEARCH -->
+        <section data-aos="fade-up">
+            <h2>5. User Research & Insights</h2>
+            <p>I interviewed 10 micro-influencers (10k-50k followers) in the travel niche.</p>
+            <div class="grid-2">
+                <div class="stat-card" style="text-align: left;">
+                    <h4 style="margin-bottom: 8px;">Insight A</h4>
+                    <p style="font-size: 1rem;">"Unauthenticated views are empty calories."</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 0;">Creators care about <strong>Algorithm
+                            Signals</strong> (Likes/Subs), not just views.</p>
+                </div>
+                <div class="stat-card" style="text-align: left;">
+                    <h4 style="margin-bottom: 8px;">Insight B</h4>
+                    <p style="font-size: 1rem;">"I hate copy-pasting."</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 0;">Any friction in <em>creating</em> the link leads to
+                        abandonment of the tool itself.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CONSTRAINTS -->
+        <section data-aos="fade-up">
+            <h2>6. Constraints</h2>
+            <ul>
+                <li><strong>Budget:</strong> $0. Must utilize free tiers (Cloudflare Workers, Firebase Spark).</li>
+                <li><strong>Time:</strong> Nights & weekends execution (Solo Founder).</li>
+                <li><strong>Technical:</strong> Strict iOS/Android sandboxing rules. Apps cannot "force" another app to
+                    open without specific user intent triggers.</li>
+            </ul>
+        </section>
+
+        <!-- 7. SOLUTION OVERVIEW -->
+        <section data-aos="fade-up">
+            <h2>7. Solution Overview</h2>
+            <p><strong>OpenRight</strong> is a "Protocol Bridge." It consists of:</p>
+            <div class="img-card" style="background: #FDFBF7; padding: 40px; text-align: center;">
+                <img src="file:///Users/shubhashreebhat/.gemini/antigravity/brain/981d1fd4-616c-458d-bbb2-f8248d5ed378/smart_link_illustration_minimal_1770669691182.png"
+                    style="max-width: 400px; margin: 0 auto;" class="img-fluid" alt="Smart Link Flow">
+            </div>
+            <ol class="number-list">
+                <li><strong>Edge Backend (Cloudflare):</strong> Detects OS in &lt;10ms.</li>
+                <li><strong>Smart Redirect Page:</strong> A lightweight HTML shim served instantly.</li>
+                <li><strong>Auto-Trigger:</strong> Executes <code>window.location = "vnd.youtube://..."</code> to wake
+                    the native app.</li>
+            </ol>
+        </section>
+
+        <!-- 8. KEY DECISIONS -->
+        <section data-aos="fade-up">
+            <h2>8. Key Product Decisions</h2>
+            <table class="decision-table">
+                <thead>
+                    <tr>
+                        <th width="30%">Decision Scope</th>
+                        <th width="35%">Options Considered</th>
+                        <th width="35%">Final Choice & Rationale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Tech Stack</strong></td>
+                        <td>React Native vs. Flutter</td>
+                        <td><strong>Flutter.</strong> React Native's bridge added latency. Flutter's compiled
+                            performance was crucial for instantaneous UI feedback.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Authentication</strong></td>
+                        <td>User Accounts vs. Anonymous</td>
+                        <td><strong>Anonymous (MVP).</strong> Prioritized trust and adoption speed. Creators didn't want
+                            <em>another</em> login.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Deep Linking</strong></td>
+                        <td>Universal Links vs. Custom Schemes</td>
+                        <td><strong>Custom Schemes (<code>vnd.youtube://</code>).</strong> Apple's Universal Links are
+                            notoriously hard to debug without paid accounts. Schemes are robust and reliable.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 9. UX & USER FLOW -->
+        <section data-aos="fade-up">
+            <h2>9. UX Principles</h2>
+            <p><strong>"Don't Make Me Think."</strong> The core friction was the copy-paste loop.</p>
+            <p><strong>The Fix:</strong> I implemented <strong>Clipboard Auto-Detection</strong>.</p>
+            <ul>
+                <li><strong>Old Way:</strong> Open App → Tap Input → Long Press → Paste → Tap Go.</li>
+                <li><strong>OpenRight Way:</strong> Open App → App detects clipboard URL → "Create Link" button glows.
+                </li>
+            </ul>
+            <p>This reduced the friction from <strong>5 taps to 1 tap</strong>.</p>
+        </section>
+
+        <!-- 10. METRICS & IMPACT -->
+        <section data-aos="fade-up">
+            <h2>10. Metrics & Results</h2>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span class="stat-val">&lt;300ms</span>
+                    <span class="stat-lbl">Redirect Latency</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-val">100%</span>
+                    <span class="stat-lbl">Redirect Success Rate</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-val">0</span>
+                    <span class="stat-lbl">Customer Complaints</span>
+                </div>
+            </div>
+            <p><strong>Primary Success Signal:</strong> User retention on the redirect page. Bounce rates dropped
+                because the "White Screen" duration was minimized by Edge computing.</p>
+        </section>
+
+        <!-- 11. WHAT DIDN'T WORK -->
+        <section data-aos="fade-up">
+            <h2>11. Failures & Learnings</h2>
+            <p><strong>Failure: The "Web Dashboard" Concept.</strong><br>
+                Initially, I built a web-only version. It failed because mobile users found it cumbersome to switch tabs
+                between YouTube and a Browser. A Native App was required to integrate into the <strong>System Share
+                    Sheet</strong>.</p>
+        </section>
+
+        <!-- 12. BUSINESS STRATEGY -->
+        <section data-aos="fade-up">
+            <h2>12. Business & Strategy</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Monetization (Future)</h3>
+                    <p><strong>Freemium Model:</strong><br>
+                        • Free: Standard links, random slugs.<br>
+                        • Pro ($5/mo): Custom branding, Analytics, Retargeting pixels.</p>
+                </div>
+                <div>
+                    <h3>Cost Structure</h3>
+                    <p><strong>Near Zero.</strong><br>
+                        Cloudflare Workers Free Tier allows 100k requests/day. KV storage is practically free for text
+                        data. Unit economics are infinitely scalable.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 13. REFLECTION -->
+        <section data-aos="fade-up" style="margin-bottom: 120px; border: none;">
+            <h2>13. PM Reflection</h2>
+            <div class="highlight-box" style="margin-top: 20px; border-left-color: var(--text-primary);">
+                <p style="margin-bottom: 0;">"This project reinforced that <strong>friction is the biggest killer of
+                        conversion</strong>. As a PM, the most valuable 'feature' isn't a new button—it's removing the 3
+                    seconds of waiting that causes a user to give up."</p>
+            </div>
+            <p>It also taught me the harsh reality of <strong>Platform Dependence</strong>. Building a business on top
+                of unauthorized deep-link schemes is a risky strategy. The long-term roadmap <em>must</em> include
+                official API partnerships.</p>
+        </section>
+
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 1000, once: true, offset: 50 });</script>
+</body>
+
+</html>

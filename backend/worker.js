@@ -38,8 +38,13 @@ export default {
       }
 
       // Redirect: Short code lookup
-      if (path.length > 1 && !path.startsWith('/api')) {
+      if (path.length > 1 && !path.startsWith('/api') && path !== '/privacy') {
         return await handleRedirect(request, env, path);
+      }
+
+      // Privacy Policy
+      if (path === '/privacy') {
+        return handlePrivacyPolicy(corsHeaders);
       }
 
       // Default response
@@ -455,4 +460,74 @@ function generateRedirectPage(videoId, originalUrl) {
   </script>
 </body>
 </html>`;
+}
+
+/**
+ * Serve Privacy Policy HTML
+ */
+function handlePrivacyPolicy(corsHeaders) {
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - OpenRight</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #1a1a1a;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: #fdfdfd;
+    }
+    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #0066FF; }
+    h2 { font-size: 1.5rem; margin-top: 2rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+    p { margin-bottom: 1rem; }
+    ul { margin-bottom: 1rem; }
+    li { margin-bottom: 0.5rem; }
+    .updated { color: #666; font-style: italic; margin-bottom: 2rem; }
+    .footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eee; color: #888; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last Updated: February 10, 2026</p>
+
+  <p>OpenRight is a utility application designed to help you open YouTube links directly in your mobile apps. We prioritize your privacy and aim to be as transparent as possible about how we handle data.</p>
+
+  <h2>1. Data Collection</h2>
+  <p>OpenRight does NOT collect any personally identifiable information (PII). We do not collect names, email addresses, phone numbers, device IDs, or location data.</p>
+
+  <h2>2. Data Usage</h2>
+  <p>When you use the OpenRight app or service to shorten a link:</p>
+  <ul>
+    <li>The original URL you provide is stored in our database.</li>
+    <li>A unique short code is generated to represent that URL.</li>
+    <li>We track anonymous click counts (the number of times a link is accessed) to provide basic analytics.</li>
+  </ul>
+
+  <h2>3. Third-Party Services</h2>
+  <p>Our service is hosted on Cloudflare. Data is stored securely using Cloudflare Workers KV. Cloudflare may process basic network logs as part of its infrastructure services, but we do not share any user data with them for advertising or tracking purposes.</p>
+
+  <h2>4. Data Retention</h2>
+  <p>Links and their associated metadata are stored indefinitely so that they continue to function for those who have shared them. Since no personal data is collected, there is no personal profile or account data to delete.</p>
+
+  <h2>5. Changes to This Policy</h2>
+  <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated "Last Updated" date.</p>
+
+  <h2>6. Contact Us</h2>
+  <p>If you have any questions about this Privacy Policy, please contact us at support@travelerstab.com.</p>
+
+  <div class="footer">
+    <p>&copy; 2026 OpenRight. All rights reserved.</p>
+  </div>
+</body>
+</html>`;
+
+  return new Response(html, {
+    status: 200,
+    headers: { ...corsHeaders, 'Content-Type': 'text/html' },
+  });
 }
