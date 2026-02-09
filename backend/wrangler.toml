@@ -1,0 +1,17 @@
+# Cloudflare Workers configuration for OpenRight
+
+name = "openright-worker"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# KV Namespace binding for storing shortened links
+[[kv_namespaces]]
+binding = "LINKS"
+id = "e86e343138f14071886d9bc3bdc3a697"
+
+# Development configuration
+[env.development]
+[[env.development.kv_namespaces]]
+binding = "LINKS"
+preview_id = "ae964bd693a44c13b8391bb0bcb6c72d"

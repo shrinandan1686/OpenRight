@@ -39,3 +39,22 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# Cloudflare Workers
+.wrangler/
+.dev.vars
+backend/dist/
+
+# IDE
+.vscode/
+.idea/
+# Build and generated files
+build/
+.dart_tool/
+*.apk
+*.dill
+*.so
+coverage/
+
+# Node modules
+node_modules/
