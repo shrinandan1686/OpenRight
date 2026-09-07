@@ -58,3 +58,5 @@ coverage/
 
 # Node modules
 node_modules/
+graphify-out/
+.claude/settings.local.json
